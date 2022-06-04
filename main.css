@@ -1,0 +1,158 @@
+@import url('https://rsms.me/inter/inter.css');
+
+:root {
+    --border-size: 2px;
+    --border-color: #424242;
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+    html {
+        font-family: 'Inter var', sans-serif;
+    }
+}
+
+body {
+    display: flex;
+}
+
+main {
+    margin: 0 auto;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 500;
+    margin-top: -0.5em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+.picture {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 1em;
+}
+
+.results {
+    border: var(--border-size) solid var(--border-color);
+    border-top: 0;
+    border-left: 0;
+    margin-bottom: 1em;
+    font-weight: 500;
+}
+
+.result-row {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.result-row:first-child,
+.result-row:last-child {
+    margin: 0;
+}
+
+.result-row>span {
+    display: inline-block;
+    padding: 0.4em;
+    border: var(--border-size) solid var(--border-color);
+    border-bottom: 0;
+    border-right: 0;
+}
+
+.guess-area, .end-area {
+    display: flex;
+    flex-direction: row;
+}
+
+.end-area > .text {
+    width: 100%;
+    margin: 0;
+    line-height: 2em;
+    font-weight: 450;
+}
+
+[hidden] {
+    display: none;
+}
+
+#input {
+    width: 100%;
+    font-size: 1em;
+    padding: 0.4em;
+    box-sizing: border-box;
+    border: var(--border-size) solid var(--border-color);
+}
+
+#input:focus,
+button:focus {
+    outline: var(--border-size) solid #5e92f3;
+    outline-offset: calc(-1 * var(--border-size));
+}
+
+button {
+    position: relative;
+    background-color: #43a047;
+    border: var(--border-size) solid var(--border-color);
+    padding: 0.4em 0.8em;
+    font-size: 1em;
+    color: white;
+    cursor: pointer;
+    transition: .1s ease background-color;
+}
+
+#guess-button {
+    border-left: 0;
+}
+
+button:hover {
+    background-color: #00701a;
+}
+
+#suggestions {
+    position: fixed;
+}
+
+#suggestions .entry {
+    display: block;
+    background-color: #eeeeee;
+    padding: 0.4em;
+    margin-bottom: calc(-1 * var(--border-size));
+    border: var(--border-size) solid var(--border-color);
+}
+
+#suggestions .entry:last-child {
+    background-color: #90caf9;
+}
+
+.toast {
+    position: fixed;
+    padding: 0.8em;
+    border-radius: 12px;
+    top: 4em;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #424242;
+    color: white;
+    font-weight: 500;
+    font-size: 1.2em;
+    opacity: 0;
+    transition: 0.3s ease opacity;
+
+    box-shadow: 0px 3px 3px -1px rgba(0, 0, 0, 0.55);
+    -webkit-box-shadow: 0px 3px 3px -1px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 3px 3px -1px rgba(0, 0, 0, 0.55);
+}
+
+.full-opacity {
+    opacity: 1;
+}

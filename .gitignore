@@ -1,0 +1,5 @@
+node_modules/
+out.js
+.env
+.DS_Store
+data/queue

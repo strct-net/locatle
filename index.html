@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locatle</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <main>
+        <h1>Locatle</h1>
+        <h2>Guess which country the picture is taken in</h2>
+        <img id="picture" class="picture">
+
+        <section class="results">
+            <div class="result-row">
+                <span class="given-country">&nbsp;</span>
+                <span class="distance">&nbsp;</span>
+            </div>
+            <div class="result-row">
+                <span class="given-country">&nbsp;</span>
+                <span class="distance">&nbsp;</span>
+            </div>
+            <div class="result-row">
+                <span class="given-country">&nbsp;</span>
+                <span class="distance">&nbsp;</span>
+            </div>
+            <div class="result-row">
+                <span class="given-country">&nbsp;</span>
+                <span class="distance">&nbsp;</span>
+            </div>
+            <div class="result-row">
+                <span class="given-country">&nbsp;</span>
+                <span class="distance">&nbsp;</span>
+            </div>
+        </section>
+
+        <section class="guess-area">
+            <input list="countries" type="text" id="input" placeholder="Enter a country name...">
+            <button id="guess-button">Guess</button>
+        </section>
+        <section class="end-area" hidden>
+            <h3 class="text"></h3>
+            <button id="share-button">Share</button>
+        </section>
+
+        <div id="suggestions"></div>
+    </main>
+
+    <script src="out.js"></script>
+</body>
+
+</html>
