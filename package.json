@@ -6,7 +6,7 @@
   "scripts": {
     "build": "esbuild js/main.js --bundle --outfile=out.js",
     "rebuild": "esbuild js/main.js --bundle --outfile=out.js && python3 ./data/dict_to_list.py  && python3 ./data/add_country.py",
-    "produce": "esbuild js/main.js --bundle --minify --outfile=out.js"
+    "produce": "mkdir -p dist; esbuild js/main.js --bundle --minify --outfile=dist/out.js && cp -r data dist; cp *.html dist; cp *.css dist"
   },
   "author": "PaddiM8",
   "license": "MIT",
