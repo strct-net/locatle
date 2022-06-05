@@ -4,7 +4,9 @@ import { GuessHandler } from "./guessHandler";
 import { SuggestionsHandler } from "./suggestionsHandler";
 import { showToast } from "./toast";
 
-const startDate = new Date(2022, 5, 4);
+const startDate = window.location.href.includes("peek")
+    ? new Date(2022, 5, 5)
+    : new Date(2022, 5, 4);
 const day = Math.floor((Date.now() - startDate.getTime()) / (1000 * 60 * 60 * 24));
 const imageData = IMAGES[day];
 document.getElementById("picture").src = `data/images/${imageData.id}.jpeg`;
