@@ -1,4 +1,4 @@
-import { COUNTRY_CODES } from "./countries";
+import { COUNTRY_CODES, COUNTRY_NAMES } from "./countries";
 import IMAGES from "../data/image_list.json"
 import { GuessHandler } from "./guessHandler";
 import { SuggestionsHandler } from "./suggestionsHandler";
@@ -10,6 +10,9 @@ const startDate = window.location.href.includes("peek")
 const day = Math.floor((Date.now() - startDate.getTime()) / (1000 * 60 * 60 * 24));
 const imageData = IMAGES[day];
 document.getElementById("picture").src = `data/images/${imageData.id}.jpeg`;
+
+const yesterdayCountry = COUNTRY_NAMES[IMAGES[day - 1].country].split("[")[0];
+document.querySelector(".yesterday-text").innerHTML = `Yesterday's picture was from ${yesterdayCountry}`;
 
 const guessHandler = new GuessHandler(
     imageData.country,

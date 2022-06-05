@@ -59,6 +59,13 @@ h3 {
     font-size: 1.2em;
 }
 
+.yesterday-text {
+    font-weight: 450;
+    font-size: 0.9em;
+    margin-top: 0.4em;
+    margin-bottom: 1em;
+}
+
 .picture-frame {
     display: flex;
 }
@@ -68,7 +75,6 @@ h3 {
     width: 0;
     height: auto;
     object-fit: cover;
-    margin-bottom: 1em;
 }
 
 .results {
