@@ -3,6 +3,7 @@ import IMAGES from "../data/image_list.json"
 import { GuessHandler } from "./guessHandler";
 import { SuggestionsHandler } from "./suggestionsHandler";
 import { showToast } from "./toast";
+import { displayDistance } from "./util";
 
 const startDate = window.location.href.includes("peek")
     ? new Date(2022, 5, 3)
@@ -50,7 +51,7 @@ document.getElementById("guess-button").addEventListener("click", () => {
 document.getElementById("share-button").addEventListener("click", () => {
     showToast("Copied results to clipboard!");
     const guessesString = guessHandler.guesses
-        .map(x => Math.round(x.distance) + " km")
+        .map(x => displayDistance(Math.round(x.distance)))
         .join("\n");
     const amount = guessHandler.guesses.length == 1
         ? "1 guess"

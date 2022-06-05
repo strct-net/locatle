@@ -1,5 +1,6 @@
 import { Guess } from "./guess";
 import { COUNTRY_NAMES, COUNTRY_CODES } from "./countries";
+import { displayDistance } from "./util";
 
 export class GuessHandler {
     constructor(correctCountryCode, correctCoordinates, resultsElement) {
@@ -26,9 +27,9 @@ export class GuessHandler {
 
         const row = this.resultsElement.children[this.results.length - 1];
         row.querySelector(".given-country").innerHTML = guess.guessedCountry;
-        row.querySelector(".distance").innerHTML = `${Math.floor(guess.distance)} km`;
+        row.querySelector(".distance").innerHTML = displayDistance(guess.distance);
         if (guessedCountryCode == this.correctCountryCode) {
-            row.querySelector(".distance").innerHTML = "0 km";
+            row.querySelector(".distance").innerHTML = displayDistance(0);
             this.guesses.push({
                 country: guess.guessedCountry,
                 distance: 0
