@@ -50,8 +50,11 @@ document.getElementById("share-button").addEventListener("click", () => {
     const guessesString = guessHandler.guesses
         .map(x => Math.round(x.distance) + " km")
         .join("\n");
+    const amount = guessHandler.guesses.length == 1
+        ? "1 guess"
+        : guessHandler.guesses.length + " guesses";
     const message = guessHandler.gameState == "won"
-        ? `Locatle #${day} with ${guessHandler.guesses.length} guesses.\n${guessesString} 🎉\bhttps://locatle.strct.net`
+        ? `Locatle #${day} with ${amount}.\n${guessesString} 🎉\bhttps://locatle.strct.net`
         : `Locatle #${day}. Game was lost.\n${guessesString} ❌\nhttps://locatle.strct.net`;
     navigator.clipboard.writeText(message);
 });
