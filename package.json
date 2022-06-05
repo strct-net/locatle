@@ -6,7 +6,7 @@
   "scripts": {
     "build": "esbuild js/main.js --bundle --outfile=out.js",
     "rebuild": "esbuild js/main.js --bundle --outfile=out.js && python3 ./data/dict_to_list.py  && python3 ./data/add_country.py",
-    "produce": "mkdir -p dist; wget https://plausible.kalker.xyz/js/plausible.js && mv plausible.js dist/stats.js && esbuild js/main.js --bundle --minify --outfile=dist/out.js && cp -r data dist; cp *.html dist; cp *.css dist"
+    "produce": "mkdir -p dist; wget https://plausible.kalker.xyz/js/plausible.js && mv plausible.js dist/stats.js && esbuild js/main.js --bundle --minify --outfile=dist/out.js && cp -r data dist; cp *.html dist; cp *.css dist; cp res/* dist"
   },
   "author": "PaddiM8",
   "license": "MIT",
