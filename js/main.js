@@ -56,7 +56,7 @@ document.getElementById("share-button").addEventListener("click", () => {
         ? "1 guess"
         : guessHandler.guesses.length + " guesses";
     const message = guessHandler.gameState == "won"
-        ? `Locatle #${day} with ${amount}.\n${guessesString} 🎉\bhttps://locatle.strct.net`
+        ? `Locatle #${day} with ${amount}.\n${guessesString} 🎉\nhttps://locatle.strct.net`
         : `Locatle #${day}. Game was lost.\n${guessesString} ❌\nhttps://locatle.strct.net`;
     navigator.clipboard.writeText(message);
 });
