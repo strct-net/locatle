@@ -120,6 +120,8 @@ button:hover {
 
 #suggestions {
     position: fixed;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 #suggestions .entry {
@@ -128,9 +130,10 @@ button:hover {
     padding: 0.4em;
     margin-bottom: calc(-1 * var(--border-size));
     border: var(--border-size) solid var(--border-color);
+    cursor: pointer;
 }
 
-#suggestions .entry:last-child {
+#suggestions .entry.selected, #suggestions .entry:hover {
     background-color: #90caf9;
 }
 

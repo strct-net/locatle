@@ -15,7 +15,7 @@ const guessHandler = new GuessHandler(
     document.querySelector(".results")
 );
 
-if (localStorage.getItem("lastPlayedDay") == day) {
+if (localStorage.getItem("lastPlayedDay") == day && localStorage.getItem("guessedCountries")) {
     const plays = JSON.parse(localStorage.getItem("guessedCountries"));
     for (const previouslyGuessedCountry of plays) {
         guessHandler.guess(previouslyGuessedCountry);

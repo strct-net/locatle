@@ -18,7 +18,7 @@ var imageData = _image_list["default"][day];
 document.getElementById("picture").src = "data/images/".concat(imageData.id, ".jpeg");
 var guessHandler = new _guessHandler.GuessHandler(imageData.country, imageData.coordinates, document.querySelector(".results"));
 
-if (localStorage.getItem("lastPlayedDay") == day) {
+if (localStorage.getItem("lastPlayedDay") == day && localStorage.getItem("guessedCountries")) {
   var plays = JSON.parse(localStorage.getItem("guessedCountries"));
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;

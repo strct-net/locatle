@@ -19,38 +19,54 @@ var SuggestionsHandler =
 /*#__PURE__*/
 function () {
   function SuggestionsHandler(element, suggestionList, inputElement) {
+    var _this = this;
+
     _classCallCheck(this, SuggestionsHandler);
 
     this.element = element;
     this.fuse = new _fuse["default"](suggestionList);
     this.inputElement = inputElement;
     this.maxLength = 6;
+    this.selectedIndex = 0;
+    this.inputElement.addEventListener("keydown", function (e) {
+      if (e.key == "ArrowUp") e.preventDefault();
+    });
+    this.inputElement.addEventListener("keydown", function (e) {
+      if (e.key == "ArrowUp") {
+        _this.selectedIndex += 1;
+
+        _this.render();
+      } else if (e.key == "ArrowDown") {
+        _this.selectedIndex = Math.max(0, _this.selectedIndex - 1);
+
+        _this.render();
+      }
+    });
   }
 
   _createClass(SuggestionsHandler, [{
     key: "getSelected",
     value: function getSelected() {
-      return this.element.children.length > 0 ? this.element.lastChild.innerHTML : "";
+      return this.element.children.length > 0 ? this.element.children[this.selectedIndex].innerHTML : "";
     }
   }, {
     key: "hide",
     value: function hide() {
       this.element.innerHTML = "";
+      this.selectedIndex = 0;
     }
   }, {
-    key: "update",
-    value: function update(input) {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
       this.element.innerHTML = "";
-      if (input == "") return;
-      var matches = this.fuse.search(input).map(function (x) {
-        return x.item;
-      }).splice(0, this.maxLength).reverse();
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
 
       try {
-        for (var _iterator = matches[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        for (var _iterator = this.matches[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var match = _step.value;
           var entry = document.createElement("span");
           entry.className = "entry";
@@ -72,9 +88,28 @@ function () {
         }
       }
 
+      if (this.selectedIndex >= this.matches.length) {
+        this.selectedIndex = this.matches.length - 1;
+      }
+
+      this.element.children[this.selectedIndex].classList.add("selected");
       this.element.style.width = this.inputElement.parentElement.offsetWidth + "px";
       this.element.style.top = this.inputElement.offsetTop - this.element.offsetHeight + "px";
       this.element.style.left = this.inputElement.offsetLeft - 0.5 + "px";
+      this.element.addEventListener("click", function (e) {
+        _this2.inputElement.value = e.target.innerHTML;
+
+        _this2.hide();
+      });
+    }
+  }, {
+    key: "update",
+    value: function update(input) {
+      if (input == "") return;
+      this.matches = this.fuse.search(input).map(function (x) {
+        return x.item;
+      }).splice(0, this.maxLength);
+      this.render();
     }
   }]);
 
@@ -82,3 +117,14 @@ function () {
 }();
 
 exports.SuggestionsHandler = SuggestionsHandler;
+
+function moveCursorToEnd(element) {
+  if (typeof element.selectionStart == "number") {
+    element.selectionStart = element.selectionEnd = element.value.length;
+  } else if (typeof element.createTextRange != "undefined") {
+    element.focus();
+    var range = element.createTextRange();
+    range.collapse(false);
+    range.select();
+  }
+}
