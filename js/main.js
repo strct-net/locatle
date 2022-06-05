@@ -27,30 +27,15 @@ if (localStorage.getItem("lastPlayedDay") == day && localStorage.getItem("guesse
 
 const countries = Object.keys(COUNTRY_CODES);
 const inputElement = document.getElementById("input");
-const suggestionsHandler = new SuggestionsHandler(
+new SuggestionsHandler(
     document.getElementById("suggestions"),
     countries,
     inputElement
 );
-inputElement.addEventListener("keydown", e => {
-    if (e.key == "Enter") {
-        if (inputElement.value in COUNTRY_CODES) {
-            document.getElementById("guess-button").click();
-        } else if (suggestionsHandler.getSelected()) {
-            inputElement.value = suggestionsHandler.getSelected();
-        }
-
-        suggestionsHandler.hide();
-    }
-});
-
-inputElement.addEventListener("input", () => {
-    suggestionsHandler.update(inputElement.value);
-});
 
 document.getElementById("guess-button").addEventListener("click", () => {
     const inputElement = document.getElementById("input");
-    if (guessHandler.guess(inputElement.value)) {
+    if (guessHandler.guess(inputElement.value.trim())) {
         inputElement.value = "";
     }
 

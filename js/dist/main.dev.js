@@ -50,25 +50,11 @@ if (localStorage.getItem("lastPlayedDay") == day && localStorage.getItem("guesse
 
 var countries = Object.keys(_countries.COUNTRY_CODES);
 var inputElement = document.getElementById("input");
-var suggestionsHandler = new _suggestionsHandler.SuggestionsHandler(document.getElementById("suggestions"), countries, inputElement);
-inputElement.addEventListener("keydown", function (e) {
-  if (e.key == "Enter") {
-    if (inputElement.value in _countries.COUNTRY_CODES) {
-      document.getElementById("guess-button").click();
-    } else if (suggestionsHandler.getSelected()) {
-      inputElement.value = suggestionsHandler.getSelected();
-    }
-
-    suggestionsHandler.hide();
-  }
-});
-inputElement.addEventListener("input", function () {
-  suggestionsHandler.update(inputElement.value);
-});
+new _suggestionsHandler.SuggestionsHandler(document.getElementById("suggestions"), countries, inputElement);
 document.getElementById("guess-button").addEventListener("click", function () {
   var inputElement = document.getElementById("input");
 
-  if (guessHandler.guess(inputElement.value)) {
+  if (guessHandler.guess(inputElement.value.trim())) {
     inputElement.value = "";
   }
 
