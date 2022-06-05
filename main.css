@@ -17,12 +17,33 @@ html {
 
 body {
     display: flex;
-    padding-bottom: 3.5em;
+    position: relative;
+    flex-direction: column;
+    padding-bottom: 5.5em;
 }
 
 main {
     margin: 0 auto;
     padding: 0.5em;
+}
+
+footer {
+    display: flex;
+    margin: auto auto 0 auto;
+    padding: 1.2em;
+    flex-direction: row;
+    align-items: center;
+}
+
+footer span {
+    display: inline;
+    vertical-align: super;
+    margin-right: 0.2em;
+}
+
+.mapillary {
+    width: 100px;
+    height: auto;
 }
 
 h1 {

@@ -37,7 +37,7 @@ export class SuggestionsHandler {
         });
 
         this.inputElement.addEventListener("focus", () => {
-            window.scrollTo(0, document.body.scrollHeight);
+            window.scrollTo(0, this.inputElement.offsetTop);
         });
     }
 
