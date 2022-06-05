@@ -4,3 +4,4 @@ out.js
 .DS_Store
 data/queue/
 dist/
+js/dist/
