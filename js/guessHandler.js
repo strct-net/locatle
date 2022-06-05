@@ -27,17 +27,23 @@ export class GuessHandler {
         const row = this.resultsElement.children[this.results.length - 1];
         row.querySelector(".given-country").innerHTML = guess.guessedCountry;
         row.querySelector(".distance").innerHTML = `${Math.floor(guess.distance)} km`;
+        if (guessedCountryCode == this.correctCountryCode) {
+            row.querySelector(".distance").innerHTML = "0 km";
+            this.guesses.push({
+                country: guess.guessedCountry,
+                distance: 0
+            });
+            this.gameWon();
+
+            return true;
+        } else if (this.results.length == 5) {
+            this.gameOver();
+        }
+
         this.guesses.push({
             country: guess.guessedCountry,
             distance: guess.distance
         });
-
-        if (guessedCountryCode == this.correctCountryCode) {
-            row.querySelector(".distance").innerHTML = "0 km";
-            this.gameWon();
-        } else if (this.results.length == 5) {
-            this.gameOver();
-        }
 
         return true;
     }
