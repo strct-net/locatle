@@ -51,7 +51,7 @@ document.getElementById("share-button").addEventListener("click", () => {
         .map(x => Math.round(x.distance) + " km")
         .join("\n");
     const message = guessHandler.gameState == "won"
-        ? `Locatle #${day} with ${guessHandler.guesses.length} guesses.\n${guessesString} 🎉`
-        : `Locatle #${day}. Game was lost.\n${guessesString} ❌`;
+        ? `Locatle #${day} with ${guessHandler.guesses.length} guesses.\n${guessesString} 🎉\bhttps://locatle.strct.net`
+        : `Locatle #${day}. Game was lost.\n${guessesString} ❌\nhttps://locatle.strct.net`;
     navigator.clipboard.writeText(message);
 });

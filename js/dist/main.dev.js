@@ -67,6 +67,6 @@ document.getElementById("share-button").addEventListener("click", function () {
   var guessesString = guessHandler.guesses.map(function (x) {
     return Math.round(x.distance) + " km";
   }).join("\n");
-  var message = guessHandler.gameState == "won" ? "Locatle #".concat(day, " with ").concat(guessHandler.guesses.length, " guesses.\n").concat(guessesString, " \uD83C\uDF89") : "Locatle #".concat(day, ". Game was lost.\n").concat(guessesString, " \u274C");
+  var message = guessHandler.gameState == "won" ? "Locatle #".concat(day, " with ").concat(guessHandler.guesses.length, " guesses.\n").concat(guessesString, " \uD83C\uDF89\bhttps://locatle.strct.net") : "Locatle #".concat(day, ". Game was lost.\n").concat(guessesString, " \u274C\nhttps://locatle.strct.net");
   navigator.clipboard.writeText(message);
 });
