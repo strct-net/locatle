@@ -9,7 +9,8 @@ with open(path + "/image_dict.json", "r") as dict_f:
     for key, value in json.load(dict_f).items():
         images.append({
             "id": key,
-            "coordinates": value["coordinates"]
+            # Mapillary has a different order
+            "coordinates": [value["coordinates"][1], value["coordinates"][0]]
         })
 
 random.shuffle(images)
