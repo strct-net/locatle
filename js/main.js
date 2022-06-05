@@ -11,12 +11,6 @@ const day = Math.floor((Date.now() - startDate.getTime()) / (1000 * 60 * 60 * 24
 const imageData = IMAGES[day];
 document.getElementById("picture").src = `data/images/${imageData.id}.jpeg`;
 
-// Yesterday's location
-const yesterdayImage = IMAGES[day - 1];
-const yesterdayCountry = COUNTRY_NAMES[yesterdayImage.country].split("[")[0];
-const mapUrl = `http://www.google.com/maps/place/${yesterdayImage.coordinates[0]},${yesterdayImage.coordinates[1]}`;
-document.querySelector(".yesterday-text").innerHTML = `Yesterday's picture was from <a href="${mapUrl}" target="_blank">${yesterdayCountry}</a>`;
-
 const guessHandler = new GuessHandler(
     imageData.country,
     imageData.coordinates,

@@ -1,5 +1,5 @@
 import { Guess } from "./guess";
-import { COUNTRY_CODES } from "./countries";
+import { COUNTRY_NAMES, COUNTRY_CODES } from "./countries";
 
 export class GuessHandler {
     constructor(correctCountryCode, correctCoordinates, resultsElement) {
@@ -62,6 +62,15 @@ export class GuessHandler {
     gameOver() {
         this.gameDone();
         this.gameState = "lost";
-        document.querySelector(".end-area").querySelector(".text").innerHTML = "Incorrect! Better luck next time.";
+        const endArea = document.querySelector(".end-area");
+        endArea.querySelector(".text").innerHTML = "Incorrect! Better luck next time.";
+
+        // Reveal the location
+        const country = COUNTRY_NAMES[this.correctCountryCode];
+        const mapUrl = `http://www.google.com/maps/place/${this.correctCoordinates[0]},${this.correctCoordinates[1]}`;
+        const answer = document.createElement("p");
+        answer.className = "answer-text";
+        answer.innerHTML = `The picture was taken in <a href="${mapUrl}" target="_blank">${country}</a>`;
+        endArea.parentElement.insertBefore(answer, endArea.nextSibling);
     }
 }

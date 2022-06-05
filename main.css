@@ -25,6 +25,7 @@ body {
 main {
     margin: 0 auto;
     padding: 0.5em;
+    padding-top: 0;
 }
 
 footer {
@@ -59,13 +60,6 @@ h3 {
     font-size: 1.2em;
 }
 
-.yesterday-text {
-    font-weight: 450;
-    font-size: 0.9em;
-    margin-top: 0.4em;
-    margin-bottom: 1em;
-}
-
 .picture-frame {
     display: flex;
 }
@@ -75,6 +69,7 @@ h3 {
     width: 0;
     height: auto;
     object-fit: cover;
+    margin-bottom: 1em;
 }
 
 .results {
@@ -113,6 +108,12 @@ h3 {
     margin: 0;
     line-height: 2em;
     font-weight: 450;
+}
+
+.answer-text {
+    font-weight: 450;
+    font-size: 0.9em;
+    margin: 0;
 }
 
 [hidden] {
