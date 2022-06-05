@@ -56,7 +56,13 @@ export class GuessHandler {
     gameWon() {
         this.gameDone();
         this.gameState = "won";
-        document.querySelector(".end-area").querySelector(".text").innerHTML = "Correct! You won.";
+        const endArea = document.querySelector(".end-area");
+        endArea.querySelector(".text").innerHTML = "Correct! You won.";
+
+        const message = document.createElement("p");
+        message.className = "end-text";
+        message.innerHTML = "Come back tomorrow for a new location.";
+        endArea.parentElement.insertBefore(message, endArea.nextSibling);
     }
 
     gameOver() {
@@ -69,8 +75,8 @@ export class GuessHandler {
         const country = COUNTRY_NAMES[this.correctCountryCode];
         const mapUrl = `http://www.google.com/maps/place/${this.correctCoordinates[0]},${this.correctCoordinates[1]}`;
         const answer = document.createElement("p");
-        answer.className = "answer-text";
-        answer.innerHTML = `The picture was taken in <a href="${mapUrl}" target="_blank">${country}</a>`;
+        answer.className = "end-text";
+        answer.innerHTML = `The picture was taken in <a href="${mapUrl}" target="_blank">${country}</a><br>Come back tomorrow for a new location.`;
         endArea.parentElement.insertBefore(answer, endArea.nextSibling);
     }
 }

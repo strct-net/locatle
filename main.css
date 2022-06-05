@@ -106,11 +106,11 @@ h3 {
 .end-area > .text {
     width: 100%;
     margin: 0;
-    line-height: 2em;
+    line-height: 1.5em;
     font-weight: 450;
 }
 
-.answer-text {
+.end-text {
     font-weight: 450;
     font-size: 0.9em;
     margin: 0;
