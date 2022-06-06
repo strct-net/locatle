@@ -60,6 +60,12 @@ h3 {
     font-size: 1.2em;
 }
 
+.hint {
+    font-size: 0.8em;
+    margin-top: 0;
+    margin-bottom: 0.4em;
+}
+
 .picture-frame {
     display: flex;
 }
@@ -82,7 +88,7 @@ h3 {
 
 .result-row {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr 1.25fr;
 }
 
 .result-row:first-child,
