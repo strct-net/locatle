@@ -5,6 +5,9 @@ import { SuggestionsHandler } from "./suggestionsHandler";
 import { showToast } from "./toast";
 import { displayDistance } from "./util";
 
+const currentDate = new Date();
+document.getElementById("title").innerHTML = `Locatle ${currentDate.getDate()}/${currentDate.getMonth() + 1}`;
+
 const startDate = window.location.href.includes("peek")
     ? new Date(2022, 5, 3)
     : new Date(2022, 5, 4);
