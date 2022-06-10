@@ -12,9 +12,44 @@ const startDate = window.location.href.includes("peek")
     ? new Date(2022, 5, 3)
     : new Date(2022, 5, 4);
 const day = Math.floor((Date.now() - startDate.getTime()) / (1000 * 60 * 60 * 24));
-const imageData = IMAGES[day];
-document.getElementById("picture").src = `data/images/${imageData.id}.jpeg`;
 
+const imageData = IMAGES[day];
+
+const picture = document.getElementById("picture");
+const pictureFrame = document.getElementById("picture-frame");
+
+const clamp = (val, min = 0, max = 1) => Math.max(min, Math.min(max, val));
+
+// set the image
+picture.src = `data/images/${imageData.id}.jpeg`;
+
+// disable zoom on mobile devices
+if (!/Mobi|Android/i.test(navigator.userAgent)) {
+    // handle zoom
+    pictureFrame.addEventListener('mousemove', e => {
+
+        picWidth = picture.clientWidth;
+        picHeight = picture.clientHeight;
+
+        x = e.x - (picture.offsetLeft) - (picWidth / 2);
+        y = e.y - (picture.offsetTop) - (picHeight / 2) + window.scrollY;
+
+        // make it easier to zoom into edges
+        x = (x / picWidth * 1.5) * picWidth;
+        y = (y / picHeight * 1.5) * picHeight;
+
+        x = clamp(x, -picWidth / 2, picWidth / 2);
+        y = clamp(y, -picHeight / 2, picHeight / 2);
+
+        picture.style.transform = `translate(${-x}px, ${-y}px) scale(2)`;
+    });
+
+    // reset zoom when the mouse leaves the picture area
+    pictureFrame.addEventListener('mouseleave', _ => {
+        document.getElementById("picture").style.transform = `translate(0px, 0px) scale(1)`;
+
+    })
+}
 const guessHandler = new GuessHandler(
     imageData.country,
     imageData.coordinates,
@@ -46,7 +81,7 @@ document.getElementById("guess-button").addEventListener("click", () => {
     }
 
     localStorage.setItem(
-        "guessedCountries", 
+        "guessedCountries",
         JSON.stringify(guessHandler.guesses.map(x => x.country))
     );
 });
