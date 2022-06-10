@@ -30,7 +30,7 @@ picture_frame.addEventListener('mousemove', e => {
     pic_height = picture.clientHeight;
 
     x = e.x - (picture.offsetLeft) - (pic_width / 2);
-    y = e.y - (picture.offsetTop) - (pic_height / 2);
+    y = e.y - (picture.offsetTop) - (pic_height / 2) + window.scrollY;
 
     // make it easier to zoom into edges
     x = (x / pic_width * 1.5) * pic_width;
