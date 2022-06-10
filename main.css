@@ -67,6 +67,7 @@ h3 {
 }
 
 #picture-frame {
+    cursor: zoom-in;
     display: flex;
     overflow: hidden;
 }
