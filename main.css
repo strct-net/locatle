@@ -62,20 +62,20 @@ h3 {
 
 .hint {
     font-size: 0.8em;
-    margin-top: 0;
+    margin-top: 1em;
     margin-bottom: 0.4em;
 }
 
-.picture-frame {
+#picture-frame {
     display: flex;
+    overflow: hidden;
 }
 
-.picture {
+#picture {
     flex-grow: 1;
     width: 0;
     height: auto;
     object-fit: cover;
-    margin-bottom: 1em;
 }
 
 .results {
@@ -104,12 +104,13 @@ h3 {
     border-right: 0;
 }
 
-.guess-area, .end-area {
+.guess-area,
+.end-area {
     display: flex;
     flex-direction: row;
 }
 
-.end-area > .text {
+.end-area>.text {
     width: 100%;
     margin: 0;
     line-height: 1.5em;
@@ -174,7 +175,8 @@ button:hover {
     cursor: pointer;
 }
 
-#suggestions .entry.selected, #suggestions .entry:hover {
+#suggestions .entry.selected,
+#suggestions .entry:hover {
     background-color: #90caf9;
 }
 

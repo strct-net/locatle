@@ -12,8 +12,29 @@ const startDate = window.location.href.includes("peek")
     ? new Date(2022, 5, 3)
     : new Date(2022, 5, 4);
 const day = Math.floor((Date.now() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+
 const imageData = IMAGES[day];
-document.getElementById("picture").src = `data/images/${imageData.id}.jpeg`;
+
+const picture = document.getElementById("picture");
+const picture_frame = document.getElementById("picture-frame");
+
+// set the image
+picture.src = `data/images/${imageData.id}.jpeg`;
+
+// handle zoom
+picture_frame.addEventListener('mousemove', e => {
+
+    x = e.x - (picture.offsetLeft) - (picture.clientWidth / 2);
+    y = e.y - (picture.offsetTop) - (picture.clientHeight / 2);
+
+    picture.style.transform = `translate(${-x}px, ${-y}px) scale(2)`;
+});
+
+// reset zoom when the mouse leaves the picture area
+picture_frame.addEventListener('mouseleave', e => {
+    document.getElementById("picture").style.transform = `translate(0px, 0px) scale(1)`;
+
+})
 
 const guessHandler = new GuessHandler(
     imageData.country,
@@ -46,7 +67,7 @@ document.getElementById("guess-button").addEventListener("click", () => {
     }
 
     localStorage.setItem(
-        "guessedCountries", 
+        "guessedCountries",
         JSON.stringify(guessHandler.guesses.map(x => x.country))
     );
 });
