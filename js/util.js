@@ -56,5 +56,5 @@ const AMERICAN_TIMEZONES = new Set([
     "US/Indiana-Starke",
     "US/Michigan",
     "US/Mountain",
-    "US/Pacific ",
+    "US/Pacific",
 ]);
