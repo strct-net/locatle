@@ -16,7 +16,7 @@ const day = Math.floor((Date.now() - startDate.getTime()) / (1000 * 60 * 60 * 24
 const imageData = IMAGES[day];
 
 const picture = document.getElementById("picture");
-const picture_frame = document.getElementById("picture-frame");
+const pictureFrame = document.getElementById("picture-frame");
 
 const clamp = (val, min = 0, max = 1) => Math.max(min, Math.min(max, val));
 
@@ -26,26 +26,26 @@ picture.src = `data/images/${imageData.id}.jpeg`;
 // disable zoom on mobile devices
 if (!/Mobi|Android/i.test(navigator.userAgent)) {
     // handle zoom
-    picture_frame.addEventListener('mousemove', e => {
+    pictureFrame.addEventListener('mousemove', e => {
 
-        pic_width = picture.clientWidth;
-        pic_height = picture.clientHeight;
+        picWidth = picture.clientWidth;
+        picHeight = picture.clientHeight;
 
-        x = e.x - (picture.offsetLeft) - (pic_width / 2);
-        y = e.y - (picture.offsetTop) - (pic_height / 2) + window.scrollY;
+        x = e.x - (picture.offsetLeft) - (picWidth / 2);
+        y = e.y - (picture.offsetTop) - (picHeight / 2) + window.scrollY;
 
         // make it easier to zoom into edges
-        x = (x / pic_width * 1.5) * pic_width;
-        y = (y / pic_height * 1.5) * pic_height;
+        x = (x / picWidth * 1.5) * picWidth;
+        y = (y / picHeight * 1.5) * picHeight;
 
-        x = clamp(x, -pic_width / 2, pic_width / 2);
-        y = clamp(y, -pic_height / 2, pic_height / 2);
+        x = clamp(x, -picWidth / 2, picWidth / 2);
+        y = clamp(y, -picHeight / 2, picHeight / 2);
 
         picture.style.transform = `translate(${-x}px, ${-y}px) scale(2)`;
     });
 
     // reset zoom when the mouse leaves the picture area
-    picture_frame.addEventListener('mouseleave', _ => {
+    pictureFrame.addEventListener('mouseleave', _ => {
         document.getElementById("picture").style.transform = `translate(0px, 0px) scale(1)`;
 
     })
