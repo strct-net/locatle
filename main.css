@@ -67,7 +67,8 @@ h3 {
 }
 
 #picture-frame {
-    cursor: zoom-in;
+    position: relative;
+    cursor: pointer;
     display: flex;
     overflow: hidden;
 }
@@ -77,6 +78,13 @@ h3 {
     width: 0;
     height: auto;
     object-fit: cover;
+}
+
+#zoom-buttons {
+    position: absolute;
+    z-index: 100;
+    top: 1em;
+    right: 1em;
 }
 
 .results {
@@ -151,6 +159,33 @@ button {
     color: white;
     cursor: pointer;
     transition: .1s ease background-color;
+}
+
+.zoom-button {
+    background-color: white;
+    display: flex;
+    padding: 0.8em;
+
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.25em;
+    color: black;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 5px;
+}
+
+.zoom-button:hover {
+    background-color: #d1d1d1;
+}
+
+.zoom-button:disabled {
+    background-color: #e0e0e0;
+    color: #8e8e8e;
+}
+
+.bold {
+    font-weight: 700;
 }
 
 #guess-button {

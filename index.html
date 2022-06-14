@@ -17,7 +17,6 @@
     <meta property="og:url" content="https://locatle.strct.net" />
     <meta property="og:description"
         content="A Wordle inspired game where you guess which country a picture was taken in" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -32,6 +31,14 @@
         <h1 id="title">Locatle</h1>
         <h2>Guess which country the picture was taken in</h2>
         <div id="picture-frame">
+            <div id="zoom-buttons">
+                <button id="zoom-in" class="zoom-button bold">
+                    <img width="16" src="plus.svg" alt="+">
+                </button>
+                <button id="zoom-out" class="zoom-button bold">
+                    <img width="16" src="minus.svg" alt="-">
+                </button>
+            </div>
             <img id="picture">
         </div>
 
