@@ -1,8 +1,8 @@
 const picture = document.getElementById("picture");
 const pictureFrame = document.getElementById("picture-frame");
 
-const zoomIn = document.getElementById("zoomIn");
-const zoomOut = document.getElementById("zoomOut");
+const zoomIn = document.getElementById("zoom-in");
+const zoomOut = document.getElementById("zoom-out");
 zoomOut.disabled = true;
 button_style("hidden");
 
@@ -44,7 +44,7 @@ if (!/Mobi|Android/i.test(navigator.userAgent)) {
     zoomOut.onclick = () => change_zoom_by(-1);
 
     // zoom on mouse move
-    pictureFrame.addEventListener('mousemove', e => {
+    pictureFrame.addEventListener("mousemove", e => {
         mousePos = { x: e.x, y: e.y };
         update_zoom(mousePos);
     });
@@ -57,12 +57,12 @@ if (!/Mobi|Android/i.test(navigator.userAgent)) {
         change_zoom_by(-e.deltaY / 100);
     }
 
-    pictureFrame.addEventListener('mouseenter', _ => {
+    pictureFrame.addEventListener("mouseenter", _ => {
         button_style("visible");
     })
 
     // reset zoom when the mouse leaves the picture area
-    pictureFrame.addEventListener('mouseleave', _ => {
+    pictureFrame.addEventListener("mouseleave", _ => {
         // reset zoom
         change_zoom_by(-8);
         button_style("hidden");

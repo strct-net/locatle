@@ -80,7 +80,7 @@ h3 {
     object-fit: cover;
 }
 
-#zoomButtons {
+#zoom-buttons {
     position: absolute;
     z-index: 100;
     top: 1em;
