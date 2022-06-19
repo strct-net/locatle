@@ -6,13 +6,11 @@ import { showToast } from "./toast";
 import { displayDistance } from "./util";
 import "./image";
 
-const currentDate = new Date();
-document.getElementById("title").innerHTML = `Locatle ${currentDate.getDate()}/${currentDate.getMonth() + 1}`;
-
 const startDate = window.location.href.includes("peek")
     ? new Date(2022, 5, 3)
     : new Date(2022, 5, 4);
 const day = Math.floor((Date.now() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+document.getElementById("title").innerHTML = `Locatle #${day}`;
 
 const imageData = IMAGES[day];
 
