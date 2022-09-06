@@ -3,6 +3,7 @@ from requests.structures import CaseInsensitiveDict
 import json
 import os
 from dotenv import load_dotenv
+import sys
 
 load_dotenv()
 token = os.getenv("GEOAPIFY_TOKEN")
@@ -11,8 +12,9 @@ headers = CaseInsensitiveDict()
 headers["Accept"] = "application/json"
 
 path = os.path.abspath(os.path.dirname(__file__))
-with open(path + "/image_list.json", "r") as f:
+with open(path + "/" + sys.argv[1], "r") as f:
     images = json.load(f)
+print(images)
 for image in images:
     if "country" in image:
         continue
@@ -29,7 +31,7 @@ for image in images:
 
 filtered_images = list(filter(lambda x: "country" in x, images))
 print(len(images), len(filtered_images))
-with open(path + "/image_list.json", "w") as f:
+with open(path + "/" + sys.argv[1], "w") as f:
     json.dump(filtered_images, f)
 
 # from audioop import reverse

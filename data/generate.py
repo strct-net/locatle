@@ -144,6 +144,7 @@ for _, bbox in country_bounding_boxes:
     print(bbox)
     images_json = requests.get("https://graph.mapillary.com/images?access_token={}&fields=id&limit=10&bbox={},{},{},{}".format(
         token, bbox[0], bbox[1], bbox[2], bbox[3])).text
+    print(images_json)
     image_ids = [image["id"] for image in json.loads(images_json)["data"]]
 
     print("Fetched image ids")
