@@ -3,11 +3,11 @@
 import json
 import sys
 
-with open("image_list.json", "r") as f:
+with open(sys.argv[1], "r") as f:
     images = json.load(f)
 
-if len(sys.argv) > 1:
-    images = images[int(sys.argv[1]):]
+if len(sys.argv) > 2:
+    images = images[int(sys.argv[2]):]
 
 countries = {}
 for image in images:
