@@ -37,6 +37,9 @@ with open("image_list.json", "w") as f:
 
 queued_files = os.listdir("queue/")
 for queued_file in queued_files:
-    shutil.move("queue/" + queued_file, "images/")
+    try:
+        shutil.move("queue/" + queued_file, "images/")
+    except:
+        pass
 
 os.remove("new_images.json")
