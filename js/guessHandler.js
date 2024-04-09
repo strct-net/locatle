@@ -62,7 +62,8 @@ export class GuessHandler {
 
         const message = document.createElement("p");
         message.className = "end-text";
-        message.innerHTML = "Come back tomorrow for a new location.";
+        const mapUrl = `http://www.google.com/maps/place/${this.correctCoordinates[0]},${this.correctCoordinates[1]}`;
+        message.innerHTML = `<a href="${mapUrl}" target="_blank">See on map</a><br>Come back tomorrow for a new location.`;
         endArea.parentElement.insertBefore(message, endArea.nextSibling);
     }
 
