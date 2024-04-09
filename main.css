@@ -78,6 +78,7 @@ h3 {
     width: 0;
     height: auto;
     object-fit: cover;
+    margin-bottom: -10px;
 }
 
 #zoom-buttons {
