@@ -41,5 +41,3 @@ for queued_file in queued_files:
         shutil.move("queue/" + queued_file, "images/")
     except:
         pass
-
-os.remove("new_images.json")
