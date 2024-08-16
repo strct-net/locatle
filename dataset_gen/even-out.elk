@@ -1,0 +1,32 @@
+#!/usr/bin/env elk
+
+let images = read out/new_image_list.json
+    | parse::json
+let byCountry = {}
+for image in images {
+    if image->country in byCountry {
+        byCountry[image->country] | push(image)
+    } else {
+        byCountry[image->country] = [image]
+    }
+}
+
+let maximumCount = len(images) * 0.05
+for (country, countryImages) in byCountry {
+    while len(countryImages) > maximumCount {
+        let removed = countryImages | random::pop
+        try {
+            rm out/${removed->id}.jpg
+        } catch {
+        }
+    }
+}
+
+let newList = byCountry
+    | dict::values
+    | iter::flatten
+    | iter::collect
+newList | random::shuffle
+newList
+    | into::json
+    | write out/even_image_list.json

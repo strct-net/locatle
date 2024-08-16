@@ -1,0 +1,53 @@
+#!/usr/bin/env elk
+
+let images = ls planet-scale
+    | iter::collect
+let imageList = []
+let metadata = read planet-scale.json | parse::json
+mkdir -p out
+
+for _ in 0..getArgv(1) {
+    let imagePath = images | random::pop
+    let imageName = imagePath
+        | split .
+        | iter::first
+    let latitude = metadata[imageName]->lat
+    let longitude = metadata[imageName]->lon
+    let country = getCountry(latitude, longitude)
+    continue if country == nil
+
+    mv planet-scale/${imagePath} out/
+
+    let image = {
+        "id": imageName,
+        "coordinates": [latitude, longitude],
+        "country": country,
+    }
+    imageList | push(image)
+    imageList | len | renderCount(getArgv(1))
+}
+
+imageList | into::json | write out/new_image_list.json
+
+fn getCountry(latitude, longitude) {
+    let token = $GEOAPIFY_TOKEN
+    if not token {
+        throw "Expected environment variable GEOAPIFY_TOKEN"
+    }
+
+    let url = "https://api.geoapify.com/v1/geocode/reverse?type=country&lat=${latitude}&lon=${longitude}&apiKey=${token}"
+    try {
+        let result = curl -s ${url} | parse::json
+        let features = result["features"]
+        return nil if len(features) == 0
+
+        features[0]["properties"]["country_code"] | str::upper
+    } catch e {
+        printlnError Error: ${e | error::value}
+        nil
+    }
+}
+
+fn renderCount(count, max) {
+    print $"\x1b[G${count}/${max}"
+}

@@ -1,0 +1,8 @@
+#!/usr/bin/env elk
+
+read out/even_image_list.json
+    | parse::json
+    | where => x: file::exists("out/${x->id}.jpg")
+    | iter::collect
+    | into::json
+    | write out/cleaned_image_list.json
