@@ -15,7 +15,7 @@ document.getElementById("title").innerHTML = `Locatle #${day}`;
 const imageData = IMAGES[day];
 
 // set the image
-picture.src = `data/images/${imageData.id}.jpeg`;
+picture.src = `data/images/${imageData.id}.jpg`;
 
 const guessHandler = new GuessHandler(
     imageData.country,
