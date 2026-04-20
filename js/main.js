@@ -12,7 +12,9 @@ const startDate = window.location.href.includes("peek")
 const day = Math.floor((Date.now() - startDate.getTime()) / (1000 * 60 * 60 * 24));
 document.getElementById("title").innerHTML = `Locatle #${day}`;
 
-const imageData = IMAGES[day];
+const cutOffPoint = 1533;
+const imageIndex = day - (Math.floor(day / cutOffPoint) * cutOffPoint);
+const imageData = IMAGES[imageIndex];
 
 // set the image
 picture.src = `data/images/${imageData.id}.jpg`;
